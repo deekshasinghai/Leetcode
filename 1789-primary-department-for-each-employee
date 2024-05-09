@@ -1,0 +1,12 @@
+--Write a solution to report all the employees with their primary department. For employees who belong to one department, report their only department.
+--Return the result table in any order.
+
+select employee_id , department_id
+from employee
+group by employee_id
+having count(employee_id)=1
+union
+(select employee_id , department_id
+from employee
+where primary_flag='Y'
+group by employee_id)
